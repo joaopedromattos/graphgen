@@ -53,7 +53,7 @@ def evaluate_loss(args, model, data, feature_map):
 
     # Forward propogation
     dfscode_rnn_output = model['dfs_code_rnn'](
-        dfscode_rnn_input, input_len=x_len + 1)
+        dfscode_rnn_input, input_len=(x_len + 1).cpu().int())
 
     # Evaluating dfscode tuple
     timestamp1 = model['output_timestamp1'](dfscode_rnn_output)
@@ -67,7 +67,7 @@ def evaluate_loss(args, model, data, feature_map):
             (timestamp1, timestamp2, vertex1, edge, vertex2), dim=2)
 
         # Cleaning the padding i.e setting it to zero
-        x_pred = pack_padded_sequence(x_pred, x_len + 1, batch_first=True)
+        x_pred = pack_padded_sequence(x_pred, (x_len + 1).cpu().int(), batch_first=True)
         x_pred, _ = pad_packed_sequence(x_pred, batch_first=True)
 
         if args.weights:

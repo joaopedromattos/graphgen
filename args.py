@@ -19,7 +19,7 @@ class Args:
         self.clean_temp = False
 
         # Whether to use tensorboard for logging
-        self.log_tensorboard = True
+        self.log_tensorboard = False
 
         # Algorithm Version - # Algorithm Version - GraphRNN  | DFScodeRNN (GraphGen) | DGMG (Deep GMG)
         self.note = 'DFScodeRNN'
